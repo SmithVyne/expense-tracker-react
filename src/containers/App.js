@@ -1,11 +1,81 @@
 import '../styles/App.css';
+import {Component} from 'react';
+import {connect} from 'react-redux';
+import {LOGIN} from '../actions';
 
-function App(props) {
-  return (
-    <div id="App">
-      
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userSignedIn: 'no',
+      username: '',
+    }
+
+    this.signIn = this.signIn.bind(this);
+  }
+
+  handleInput = ({value}) => {
+    this.setState({username: value});
+  }
+  
+  async signIn(username) {
+    const {LOGIN} = this.props;
+    this.setState({userSignedIn: 'loading'});
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({username})
+    });
+
+    if (response.ok) {
+      response.json()
+      .then(userData => LOGIN(userData) && this.setState({userSignedIn:'yes'}));
+    }
+  }
+
+  render() {
+    const {userSignedIn, username} = this.state;
+    if (userSignedIn === 'loading') {
+      return (
+        <main>
+          <div className="lds-roller">
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </main>
+      );
+    }
+    else if( userSignedIn === 'yes') {
+      return (
+        <main>
+
+        </main>
+      )
+    }
+
+    return (
+      <main>
+        <form className="authForm">
+          <h2>LOGIN</h2>
+          <input onChange={e => this.handleInput(e.target)} value={username} className="username-field" type="text" placeholder="username" />
+          <input type="button" onClick={() => this.signIn(username)} value="LOGIN" className="loginBtn"/>
+        </form>
+      </main>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = ({currentUser}) => ({currentUser});
+
+export default connect(
+  mapStateToProps,
+  {LOGIN}
+)(App);
