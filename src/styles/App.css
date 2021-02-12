@@ -25,6 +25,10 @@ main,
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: start;
+}
+
+main.loginPage {
   justify-content: center;
 }
 
@@ -60,14 +64,31 @@ main,
   background: #fff;
 }
 
+#title {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
+
+
+#categoryList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 100px;
+  width: 75%;
+}
+
+.categoryCard {
+  text-decoration: none;
+  background: #ececec;
+}
+
 /* Loading Widget */
 .lds-roller {
   display: block;
   position: relative;
   width: 80px;
   height: 80px;
-  /* margin-top: 15%;
-  margin-left: 45%; */
 }
 
 .lds-roller div {

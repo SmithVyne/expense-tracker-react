@@ -2,6 +2,8 @@ import '../styles/App.css';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {LOGIN} from '../actions';
+import { Route, Switch, Link } from 'react-router-dom';
+import AddExpense from './AddExpense';
 
 class App extends Component {
   constructor(props) {
@@ -37,9 +39,25 @@ class App extends Component {
 
   render() {
     const {userSignedIn, username} = this.state;
+    return (
+      <>
+        <main>
+          <h1 id="title">
+            Expenses Tracker
+          </h1>
+          <Switch>
+            <Route exact path="/" component={AddExpense} />
+          </Switch>
+        </main>
+        <nav>
+          
+        </nav>
+      </>
+    );
+    
     if (userSignedIn === 'loading') {
       return (
-        <main>
+        <main className="loginPage">
           <div className="lds-roller">
             <div />
             <div />
@@ -53,21 +71,32 @@ class App extends Component {
         </main>
       );
     }
+    
     else if( userSignedIn === 'yes') {
       return (
-        <main>
-
-        </main>
+        <>
+          <main className="loginPage">
+            <h1 id="title">
+              Expenses Tracker
+            </h1>
+            <Switch>
+              <Route exact path="/" component={AddExpense} />
+            </Switch>
+          </main>
+          <nav>
+            
+          </nav>
+        </>
       )
     }
 
     return (
       <main>
-        <form className="authForm">
+        <div className="authForm">
           <h2>LOGIN</h2>
           <input onChange={e => this.handleInput(e.target)} value={username} className="username-field" type="text" placeholder="username" />
           <input type="button" onClick={() => this.signIn(username)} value="LOGIN" className="loginBtn"/>
-        </form>
+        </div>
       </main>
     );
   }
