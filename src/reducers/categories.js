@@ -1,14 +1,13 @@
-import CategoriesList from "../containers/CategoriesList";
+const defCategories = [{id: 0, name: 'Groceries', total: '', limit:'' },{id: 1, name: 'Transportation', total: '', limit:'' }];
 
-const defaultState = {
-  allCategories : [
-    {name: 'Groceries', total: '', limit:'' },
-    {name: 'Transportation', total: '', limit:'' },
-    {name: 'Leisure', total: '', limit:'' },
-  ],
-};
-
-const CategoriesReducer = (state=defaultState, action) => {
+const CategoriesReducer = (state=defCategories, action) => {
+  const {type, categories} = action;
+  switch (type) {
+    case 'ADD_ALL_CATEGORIES':
+      return [...categories]
+    default:
+      return state;
+  }
   return state;
 }
 

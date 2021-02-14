@@ -1,21 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Category from '../components/Category';
 
-const categoriesList = [
-  {name: 'Groceries', total: '', limit:'' },
-  {name: 'Transportation', total: '', limit:'' },
-  {name: 'Leisure', total: '', limit:'' }
-];
-
-function CategoriesList(props) {
+function CategoriesList({categories}) {
   return (
     <div id="categoryList">
       {
-        categoriesList.map(({name, total, limit}) => (
+        categories.map(({id, name, total, limit}) => (
           <Category 
             name={name} 
             total={total}
             limit={limit}
+            id = {id}
           />
         ))
       }
@@ -23,4 +19,8 @@ function CategoriesList(props) {
   );
 }
 
-export default CategoriesList;
+const mapStateToProps = ({categories}) => ({categories});
+
+export default connect(
+  mapStateToProps,
+)(CategoriesList);

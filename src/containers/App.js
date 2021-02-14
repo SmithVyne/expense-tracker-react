@@ -49,8 +49,8 @@ class App extends Component {
           </h1>
           <Switch>
             <Route exact path="/categories" component={CategoriesList} />
-            <Route path="/categories/:category" component={ActivitiesList} />
-            <Route path="/activities/:activity" component={Activity} />
+            <Route path="/categories/:category/activities" component={ActivitiesList} />
+            <Route path="/categories/:category/:activity" component={Activity} />
           </Switch>
         </main>
         <nav>

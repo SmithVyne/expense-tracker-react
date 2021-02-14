@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom';
 
-function Category({name, total, limit}) {
+function Category({id, name, total, limit}) {
   
   return (
-    <Link to="/category" className="categoryCard">
+    <Link to={`/categories/${id}/activities`} className="categoryCard">
       <h4>{name}</h4>
       <p>Total: {total}</p>
       <p>Limit: {limit}</p>
