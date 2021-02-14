@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ActivitiesList(props) {
+function ActivitiesList({match}) {
   return (
     <div>
-      
+      Hello
     </div>
   );
 }

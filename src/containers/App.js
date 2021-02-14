@@ -3,7 +3,9 @@ import {Component} from 'react';
 import {connect} from 'react-redux';
 import {LOGIN} from '../actions';
 import { Route, Switch, Link } from 'react-router-dom';
-import AddExpense from './AddExpense';
+import ActivitiesList from './ActivitiesList';
+import CategoriesList from './CategoriesList';
+import Activity from '../components/Activity';
 
 class App extends Component {
   constructor(props) {
@@ -46,7 +48,9 @@ class App extends Component {
             Expenses Tracker
           </h1>
           <Switch>
-            <Route exact path="/" component={AddExpense} />
+            <Route exact path="/categories" component={CategoriesList} />
+            <Route path="/categories/:category" component={ActivitiesList} />
+            <Route path="/activities/:activity" component={Activity} />
           </Switch>
         </main>
         <nav>
@@ -80,7 +84,8 @@ class App extends Component {
               Expenses Tracker
             </h1>
             <Switch>
-              <Route exact path="/" component={AddExpense} />
+              <Route exact path="/categories" component={CategoriesList} />
+              <Route path="/categories/:category" component={ActivitiesList} />
             </Switch>
           </main>
           <nav>
