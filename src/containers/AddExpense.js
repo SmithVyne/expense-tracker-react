@@ -1,24 +1,13 @@
-import {Link} from 'react-router-dom';
-
-const categoriesList = [
-  {name: 'Groceries', total: '', limit:'' },
-  {name: 'Transportation', total: '', limit:'' },
-  {name: 'Leisure', total: '', limit:'' }
-];
+import CategoriesList from './CategoriesList';
+import ActivitiesList from './ActivitiesList';
+import {Switch, Route} from 'react-router-dom';
 
 function AddExpense(props) {
   return (
-    <div id="categoryList">
-      {
-        categoriesList.map(({name, total, limit}) => (
-          <Link className="categoryCard">
-            <h4>{name}</h4>
-            <p>Total: {total}</p>
-            <p>Limit: {limit}</p>
-          </Link>
-        ))
-      }
-    </div>
+    <Switch>
+      <Route exact path="/categories" component={CategoriesList} />
+      <Route path="/categories/:category" component={ActivitiesList} />
+    </Switch>
   );
 }
 
