@@ -13,7 +13,7 @@ export const LOGOUT = (
 
 export const ADD_ALL_CATEGORIES = categories => (
   {
-    type: 'ADD_CATEGORIES',
+    type: 'ADD_ALL_CATEGORIES',
     categories,
   }
 )

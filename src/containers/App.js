@@ -2,7 +2,7 @@ import '../styles/App.css';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {LOGIN} from '../actions';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import ActivitiesList from './ActivitiesList';
 import CategoriesList from './CategoriesList';
 import Activity from '../components/Activity';
