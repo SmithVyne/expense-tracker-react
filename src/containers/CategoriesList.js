@@ -2,47 +2,49 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
 import {ADD_ALL_CATEGORIES} from '../actions';
+import Loader from '../components/Loader';
 
 class CategoriesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      render: 'no'
+      loading: false,
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const {ADD_ALL_CATEGORIES} = this.props;
-    this.setState({render: 'loading'});
+    this.setState({loading: true});
 
-    fetch('/categories')
+    await fetch('/categories')
     .then(response => response.json())
-    .then(categories => {
-      if (categories.length) {
-        ADD_ALL_CATEGORIES(categories);
-        this.setState({render: 'yes'});
-      }
-      this.setState({render: 'no'});
-    })
+    .then(categories => ADD_ALL_CATEGORIES(categories) );
     
+    this.setState({loading: false});
   }
 
   render(){
     const {categories} = this.props;
+    const {loading} = this.state;
+    if (loading) {
+      return (
+        <Loader />
+      );
+    }
     return (
-    <div id="categoryList">
-      {
-        categories.map(({id, name, total, limit}) => (
-          <Category 
-            name={name} 
-            total={total}
-            limit={limit}
-            id = {id}
-          />
-        ))
-      }
-    </div>
-    );
+      <div id="categoryList">
+        {
+          categories.map(({id, name, total, limit}) => (
+            <Category 
+              name={name} 
+              total={total}
+              limit={limit}
+              id = {id}
+            />
+          ))
+        }
+      </div>
+      );
   }
 };
 

@@ -6,41 +6,20 @@ import { Route, Switch } from 'react-router-dom';
 import ActivitiesList from './ActivitiesList';
 import CategoriesList from './CategoriesList';
 import Activity from '../components/Activity';
+import Loader from '../components/Loader';
+import Login from '../components/Login';
+import AddNewCategory from '../components/AddNewCategory';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userSignedIn: 'no',
-      username: '',
-    }
-
-    this.signIn = this.signIn.bind(this);
-  }
-
-  handleInput = ({value}) => {
-    this.setState({username: value});
-  }
-  
-  async signIn(username) {
-    const {LOGIN} = this.props;
-    this.setState({userSignedIn: 'loading'});
-    const response = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({username})
-    });
-
-    if (response.ok) {
-      response.json()
-      .then(userData => LOGIN(userData) && this.setState({userSignedIn:'yes'}));
     }
   }
 
   render() {
-    const {userSignedIn, username} = this.state;
+    const {userSignedIn} = this.state;
     return (
       <>
         <main>
@@ -49,6 +28,7 @@ class App extends Component {
           </h1>
           <Switch>
             <Route exact path="/categories" component={CategoriesList} />
+            <Route path="/categories/new" component={AddNewCategory} />
             <Route path="/categories/:category/activities" component={ActivitiesList} />
             <Route path="/categories/:category/:activity" component={Activity} />
           </Switch>
@@ -62,16 +42,7 @@ class App extends Component {
     if (userSignedIn === 'loading') {
       return (
         <main className="loginPage">
-          <div className="lds-roller">
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-          </div>
+          <Loader />
         </main>
       );
     }
@@ -97,11 +68,7 @@ class App extends Component {
 
     return (
       <main>
-        <div className="authForm">
-          <h2>LOGIN</h2>
-          <input onChange={e => this.handleInput(e.target)} value={username} className="username-field" type="text" placeholder="username" />
-          <input type="button" onClick={() => this.signIn(username)} value="LOGIN" className="loginBtn"/>
-        </div>
+        <Login />
       </main>
     );
   }
