@@ -3,12 +3,13 @@ import {Component} from 'react';
 import {connect} from 'react-redux';
 import {LOGIN} from '../actions';
 import { Route, Switch } from 'react-router-dom';
-import ActivitiesList from './ActivitiesList';
+import ExpensesList from './ExpensesList';
 import CategoriesList from './CategoriesList';
-import Activity from '../components/Activity';
+import Expense from '../components/Expense';
 import Loader from '../components/Loader';
 import Login from '../components/Login';
 import AddNewCategory from '../components/AddNewCategory';
+import Nav from './Nav';
 
 class App extends Component {
   constructor(props) {
@@ -29,13 +30,12 @@ class App extends Component {
           <Switch>
             <Route exact path="/categories" component={CategoriesList} />
             <Route path="/categories/new" component={AddNewCategory} />
-            <Route path="/categories/:category/activities" component={ActivitiesList} />
-            <Route path="/categories/:category/:activity" component={Activity} />
+            <Route path="/categories/:category/expenses" component={ExpensesList} />
+            <Route path="/categories/:category/:expense" component={Expense} />
           </Switch>
         </main>
-        <nav>
-          
-        </nav>
+        
+        <Nav />
       </>
     );
     
@@ -56,7 +56,7 @@ class App extends Component {
             </h1>
             <Switch>
               <Route exact path="/categories" component={CategoriesList} />
-              <Route path="/categories/:category" component={ActivitiesList} />
+              <Route path="/categories/:category" component={ExpensesList} />
             </Switch>
           </main>
           <nav>

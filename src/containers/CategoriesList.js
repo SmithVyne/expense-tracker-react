@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
-import {ADD_ALL_CATEGORIES} from '../actions';
+import {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES} from '../actions';
 import Loader from '../components/Loader';
 
 class CategoriesList extends Component {
@@ -13,7 +13,7 @@ class CategoriesList extends Component {
   }
 
   async componentDidMount() {
-    const {ADD_ALL_CATEGORIES} = this.props;
+    const {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES} = this.props;
     this.setState({loading: true});
 
     await fetch('/categories')
@@ -21,6 +21,10 @@ class CategoriesList extends Component {
     .then(categories => ADD_ALL_CATEGORIES(categories) );
     
     this.setState({loading: false});
+
+    await fetch('/expenses')
+    .then(response => response.json())
+    .then(expenses => ADD_ALL_EXPENSES(expenses))
   }
 
   render(){
@@ -52,5 +56,5 @@ const mapStateToProps = ({categories}) => ({categories});
 
 export default connect(
   mapStateToProps,
-  {ADD_ALL_CATEGORIES}
+  {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES}
 )(CategoriesList);
