@@ -22,7 +22,7 @@ class CategoriesList extends Component {
     
     this.setState({loading: false});
 
-    await fetch('/expenses')
+    await fetch('/expenses?expense_date=febuary 15 2021')
     .then(response => response.json())
     .then(expenses => ADD_ALL_EXPENSES(expenses))
   }

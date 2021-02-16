@@ -24,3 +24,10 @@ export const ADD_ALL_EXPENSES = expenses => (
     expenses
   }
 )
+
+export const ADD_DATE = date => (
+  {
+    type: 'ADD_DATE',
+    date
+  }
+)

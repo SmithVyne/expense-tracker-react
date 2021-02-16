@@ -2,7 +2,7 @@ import '../styles/App.css';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {LOGIN} from '../actions';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import ExpensesList from './ExpensesList';
 import CategoriesList from './CategoriesList';
 import Expense from '../components/Expense';
@@ -28,6 +28,7 @@ class App extends Component {
             Expenses Tracker
           </h1>
           <Switch>
+            <Redirect exact from='/' to='/categories' />
             <Route exact path="/categories" component={CategoriesList} />
             <Route path="/categories/new" component={AddNewCategory} />
             <Route path="/categories/:category/expenses" component={ExpensesList} />
