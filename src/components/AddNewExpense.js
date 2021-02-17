@@ -6,6 +6,11 @@ class AddNewExpense extends Component {
       amount: '',
      };
   }
+
+  handleExpense({value}) {
+    
+  } 
+  
   render() {
     const {title, amount} = this.state;
     return (

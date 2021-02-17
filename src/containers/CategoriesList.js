@@ -12,23 +12,34 @@ class CategoriesList extends Component {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.almightyFetcher()
+  }
+
+  async almightyFetcher() {
     const {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES, date} = this.props;
     this.setState({loading: true});
+    console.log(date);
 
-    await fetch(`/categories?category_date=${date}`)
+    await fetch(`/categories?category_date=${date[0]}`)
     .then(response => response.json())
     .then(categories => ADD_ALL_CATEGORIES(categories) );
     
     this.setState({loading: false});
 
-    await fetch(`/expenses?expense_date=${date}`)
+    await fetch(`/expenses?expense_date=${date[0]}`)
     .then(response => response.json())
     .then(expenses => ADD_ALL_EXPENSES(expenses))
   }
 
+  date_changer(modifier) {
+    const {CHANGE_DATE} = this.props;
+    CHANGE_DATE(modifier);
+    this.almightyFetcher();
+  }
+
   render(){
-    const {categories, date, CHANGE_DATE} = this.props;
+    const {categories, date} = this.props;
     const {loading} = this.state;
     if (loading) {
       return (
@@ -38,9 +49,9 @@ class CategoriesList extends Component {
     return (
       <>
         <div className="">
-          <span onClick={() => CHANGE_DATE(-1)} className="dateSliders">{'<'}</span>
+          <span onClick={() => this.date_changer(-1)} className="dateSliders">{'<'}</span>
           <span className="dateTime">{date[0]}</span>
-          <span onClick={() => CHANGE_DATE(1)} className="dateSliders">{'>'}</span>
+          <span onClick={() => this.date_changer(1)} className="dateSliders">{'>'}</span>
         </div>
         <div id="categoryList">
           {
