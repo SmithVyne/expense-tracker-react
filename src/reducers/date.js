@@ -1,8 +1,10 @@
-const dateReducer = (state="", action) => {
-  const {date, type} = action;
+import {dateSetter} from '../utitlities';
+
+const dateReducer = (state=dateSetter(), action) => {
+  const {modifier, type} = action;
   switch (type) {
-    case 'ADD_DATE':
-      return date;
+    case 'CHANGE_DATE':
+      return dateSetter(modifier, state[1]);
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
-import {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES} from '../actions';
+import {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES, CHANGE_DATE} from '../actions';
 import Loader from '../components/Loader';
 
 class CategoriesList extends Component {
@@ -13,22 +13,22 @@ class CategoriesList extends Component {
   }
 
   async componentDidMount() {
-    const {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES} = this.props;
+    const {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES, date} = this.props;
     this.setState({loading: true});
 
-    await fetch('/categories')
+    await fetch(`/categories?category_date=${date}`)
     .then(response => response.json())
     .then(categories => ADD_ALL_CATEGORIES(categories) );
     
     this.setState({loading: false});
 
-    await fetch('/expenses?expense_date=febuary 15 2021')
+    await fetch(`/expenses?expense_date=${date}`)
     .then(response => response.json())
     .then(expenses => ADD_ALL_EXPENSES(expenses))
   }
 
   render(){
-    const {categories} = this.props;
+    const {categories, date, CHANGE_DATE} = this.props;
     const {loading} = this.state;
     if (loading) {
       return (
@@ -36,25 +36,32 @@ class CategoriesList extends Component {
       );
     }
     return (
-      <div id="categoryList">
-        {
-          categories.map(({id, name, total, limit}) => (
-            <Category 
-              name={name} 
-              total={total}
-              limit={limit}
-              id = {id}
-            />
-          ))
-        }
-      </div>
+      <>
+        <div className="">
+          <span onClick={() => CHANGE_DATE(-1)} className="dateSliders">{'<'}</span>
+          <span className="dateTime">{date[0]}</span>
+          <span onClick={() => CHANGE_DATE(1)} className="dateSliders">{'>'}</span>
+        </div>
+        <div id="categoryList">
+          {
+            categories.map(({id, name, total, limit}) => (
+              <Category 
+                name={name} 
+                total={total}
+                limit={limit}
+                id = {id}
+              />
+            ))
+          }
+        </div>
+      </>
       );
   }
 };
 
-const mapStateToProps = ({categories}) => ({categories});
+const mapStateToProps = ({categories, date}) => ({categories, date});
 
 export default connect(
   mapStateToProps,
-  {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES}
+  {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES, CHANGE_DATE}
 )(CategoriesList);

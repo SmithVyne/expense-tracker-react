@@ -5,11 +5,9 @@ export const LOGIN = user => (
   }
 );
 
-export const LOGOUT = (
-  {
-    type: 'LOGOUT',
-  }
-);
+export const LOGOUT = {
+  type: 'LOGOUT',
+}
 
 export const ADD_ALL_CATEGORIES = categories => (
   {
@@ -25,9 +23,9 @@ export const ADD_ALL_EXPENSES = expenses => (
   }
 )
 
-export const ADD_DATE = date => (
+export const CHANGE_DATE = modifier => (
   {
-    type: 'ADD_DATE',
-    date
+    type: 'CHANGE_DATE',
+    modifier
   }
 )
