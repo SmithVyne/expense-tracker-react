@@ -10,6 +10,7 @@ import Loader from '../components/Loader';
 import Login from '../components/Login';
 import AddNewCategory from '../components/AddNewCategory';
 import Nav from './Nav';
+import AddNewExpense from '../components/AddNewExpense';
 
 class App extends Component {
   constructor(props) {
@@ -25,18 +26,18 @@ class App extends Component {
       <>
         <main>
           <h1 id="title">
-            Expenses Tracker
+            Expenses.tracker
           </h1>
           <Switch>
             <Redirect exact from='/' to='/categories' />
             <Route exact path="/categories" component={CategoriesList} />
             <Route path="/categories/new" component={AddNewCategory} />
+            <Route path="/categories/:category/expenses/new" component={AddNewExpense} />
             <Route path="/categories/:category/expenses" component={ExpensesList} />
             <Route path="/categories/:category/:expense" component={Expense} />
           </Switch>
+          <Nav />
         </main>
-        
-        <Nav />
       </>
     );
     

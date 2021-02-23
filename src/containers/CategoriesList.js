@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Category from '../components/Category';
 import {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES, CHANGE_DATE} from '../actions';
 import Loader from '../components/Loader';
+import scroll_arrow from '../assets/images/scroll-arrow.svg';
 
 class CategoriesList extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class CategoriesList extends Component {
     this.state = {
       loading: false,
     }
+
+    this.almightyFetcher = this.almightyFetcher.bind(this);
   }
 
   componentDidMount() {
@@ -19,7 +22,6 @@ class CategoriesList extends Component {
   async almightyFetcher() {
     const {ADD_ALL_CATEGORIES, ADD_ALL_EXPENSES, date} = this.props;
     this.setState({loading: true});
-    console.log(date);
 
     await fetch(`/categories?category_date=${date[0]}`)
     .then(response => response.json())
@@ -32,9 +34,9 @@ class CategoriesList extends Component {
     .then(expenses => ADD_ALL_EXPENSES(expenses))
   }
 
-  date_changer(modifier) {
+  async date_changer(modifier) {
     const {CHANGE_DATE} = this.props;
-    CHANGE_DATE(modifier);
+    await CHANGE_DATE(modifier);
     this.almightyFetcher();
   }
 
@@ -48,10 +50,12 @@ class CategoriesList extends Component {
     }
     return (
       <>
-        <div className="">
-          <span onClick={() => this.date_changer(-1)} className="dateSliders">{'<'}</span>
-          <span className="dateTime">{date[0]}</span>
-          <span onClick={() => this.date_changer(1)} className="dateSliders">{'>'}</span>
+        <div id="dateSetter">
+          <img src={scroll_arrow} alt="date changer" onClick={() => this.date_changer(-1)} id="scroll-left" className="changeDate" />
+
+            <span className="dateTime">{date[0]}</span>
+
+          <img src={scroll_arrow} alt="date changer" onClick={() => this.date_changer(1)} className="changeDate" />
         </div>
         <div id="categoryList">
           {
@@ -66,7 +70,7 @@ class CategoriesList extends Component {
           }
         </div>
       </>
-      );
+    );
   }
 };
 

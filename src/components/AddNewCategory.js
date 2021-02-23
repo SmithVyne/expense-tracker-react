@@ -22,7 +22,7 @@ class AddNewCategory extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user_id: 34, name, limit})
+      body: JSON.stringify({user_id:2, name, limit, total:0})
     })
     .then(response => response.ok && this.setState({redirect: true}));
   }
@@ -39,7 +39,6 @@ class AddNewCategory extends Component {
       <form>
         <input onChange={(e) => this.handleCategory(e.target)} name="name" value={name} type="text" placeholder="Give your category a name"  />
         <input onChange={(e) => this.handleCategory(e.target)} name="limit" value={limit} type="number" placeholder="Your limit" />
-        {/* <input onChange={(e) => this.handleCategory(e.target)} name="total" value={total} type="number" /> */}
         <button onClick={()=>this.postCategory({user_id, name, limit})} type="button">Submit</button>
       </form>
     );
