@@ -65,6 +65,7 @@ class CategoriesList extends Component {
                 total={total}
                 limit={limit}
                 id = {id}
+                key={id}
               />
             ))
           }

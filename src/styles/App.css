@@ -31,62 +31,87 @@ main {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-}
-
-main,
-.authForm {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
 }
 
-main.loginPage {
-  justify-content: center;
-}
+/* main.loginPage {
+  align-items: center;
+} */
 
-.authForm {
-  width: 290px;
-  height: 180px;
-  max-height: max-content;
-  border: 2px solid white;
+#authform {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: max-content;
+  max-width: 450px;
+  height: 195px;
+  margin-top: calc(50vh - 180px);
+  border: 1px solid white;
+  background: #f1d333;
   border-radius: 50px;
+  padding: 20px;
+  font-family: cursive;
 }
-
 
 .username-field {
-  width: 60%;
-  height: 40px;
-  border-radius: 15px;
-  border: 1px solid black;
-  padding: 10px;
-  margin-top: 10px;
+  background: #c84f82;
+  color: white;
+  width: 190px;
+  height: 50px;
+  border-radius: 50px;
+  border: 2px double black;
+  font-size: 20px;
+  /* padding-left: 40px; */
   outline: none;
+  font-family: cursive;
   text-align: center;
-  font-size: 18px;
-  letter-spacing: 1px;
+}
+
+.username-field::placeholder {
+  color: white;
 }
 
 .loginBtn {
-  margin-top: 10px;
-  width: 70px;
-  border-radius: 10px;
+  width: 160px;
+  height: 50px;
+  border-radius: 50px;
+  font-size: 16px;
   border: none;
-  height: 30px;
+  background: black;
+  color: white;
   cursor: pointer;
-  background: #fff;
+  font-family: cursive;
+  outline: none;
+}
+
+.loginBtn:active,
+.loginBtn:hover {
+  background: #1f1f1f;
+}
+
+#signup_link {
+  text-decoration: none;
+  color: black;
+  margin: 0;
+}
+
+#signup_link:hover {
+  text-decoration: white underline;
 }
 
 #title {
   width: 100%;
   color: #fff;
-  font-family: "Helvetica Neue Bold";
+  /* font-family: "Helvetica Neue Bold"; */
   font-size: 18px;
   word-spacing: 2px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: cursive;
 }
 
 
@@ -151,6 +176,25 @@ main.loginPage {
 .changeDate:hover {
   cursor: pointer;
 }
+
+.addExpenseIcon {
+  position: absolute;
+  right: 9px;
+  top: 14px;
+  font-size: 26px;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* Loading Widget */
 .lds-roller {

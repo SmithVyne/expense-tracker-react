@@ -1,4 +1,5 @@
 import '../styles/App.css';
+import '../styles/Forms.css';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {LOGIN} from '../actions';
@@ -16,32 +17,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userSignedIn: 'no',
+      loading: false,
     }
   }
 
   render() {
-    const {userSignedIn} = this.state;
-    return (
-      <>
-        <main>
-          <h1 id="title">
-            Expenses.tracker
-          </h1>
-          <Switch>
-            <Redirect exact from='/' to='/categories' />
-            <Route exact path="/categories" component={CategoriesList} />
-            <Route path="/categories/new" component={AddNewCategory} />
-            <Route path="/categories/:category/expenses/new" component={AddNewExpense} />
-            <Route path="/categories/:category/expenses" component={ExpensesList} />
-            <Route path="/categories/:category/:expense" component={Expense} />
-          </Switch>
-          <Nav />
-        </main>
-      </>
-    );
+    const {currentUser} = this.props.currentUser;
+    const {loading} = this.state;
+    console.log(currentUser);
     
-    if (userSignedIn === 'loading') {
+    if (loading) {
       return (
         <main className="loginPage">
           <Loader />
@@ -49,27 +34,29 @@ class App extends Component {
       );
     }
     
-    else if( userSignedIn === 'yes') {
+    if(currentUser) {
       return (
         <>
-          <main className="loginPage">
+          <main>
             <h1 id="title">
-              Expenses Tracker
+              Expenses.tracker
             </h1>
             <Switch>
+              <Redirect exact from='/' to='/categories' />
               <Route exact path="/categories" component={CategoriesList} />
-              <Route path="/categories/:category" component={ExpensesList} />
+              <Route path="/categories/new" component={AddNewCategory} />
+              <Route path="/categories/:category/expenses/new" component={AddNewExpense} />
+              <Route path="/categories/:category/expenses" component={ExpensesList} />
+              <Route path="/categories/:category/:expense" component={Expense} />
             </Switch>
+            <Nav />
           </main>
-          <nav>
-            
-          </nav>
         </>
-      )
+      );
     }
 
     return (
-      <main>
+      <main className="loginPage">
         <Login />
       </main>
     );

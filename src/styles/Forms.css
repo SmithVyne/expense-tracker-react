@@ -1,0 +1,82 @@
+#new_category_plus_icon {
+  width: 250px;
+  height: 250px;
+  margin-top: calc(50vh - 285px);
+  cursor: pointer;
+}
+
+
+.newCategoryForm {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: max-content;
+  max-width: 450px;
+  margin-top: calc(50vh - 285px);
+  border: 1px solid white;
+  background: #f1d333;
+  border-radius: 50px;
+  height: 289px;
+  padding: 20px;
+}
+
+.newCategoryForm span {
+  color: black;
+  position: absolute;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+#name-label {
+  bottom: 242px;
+  left: 39px;
+}
+
+#limit-label {
+  bottom: 168px;
+  right: 40px;
+}
+
+.newCategoryForm input {
+  border-radius: 50px;
+  background: #fdfdfd;
+  height: 50px;
+  border: 2px double black;
+  font-size: 20px;
+  padding-left: 40px;
+  outline: none;
+  font-family: cursive;
+}
+
+.newCategoryForm input:first-child {
+  background: #c84f82;
+  color: white;
+  width: 190px;
+}
+
+.newCategoryForm input:nth-child(2) {
+  width: 200px;
+}
+
+.newCategoryForm input::placeholder {
+  color: white;
+}
+
+.newCategoryForm button {
+  width: 160px;
+  height: 50px;
+  border-radius: 50px;
+  font-size: 16px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.newExpensesForm input:nth-child(2)::placeholder {
+  color: black;
+}

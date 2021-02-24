@@ -22,6 +22,10 @@ nav {
   color: #fdfdfd;
 }
 
+/* .nav-items:hover {
+  background: black;
+} */
+
 .nav-items img {
   width: 30px;
   height: 30px;
@@ -31,4 +35,8 @@ nav {
   text-align: center;
   margin-top: auto;
   font-size: 14px;
+}
+
+.active_nav_item {
+  background: black;
 }

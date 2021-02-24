@@ -1,6 +1,8 @@
 import {Component} from 'react';
 import { connect } from 'react-redux';
 import {LOGIN} from '../actions';
+import SignUp from './SignUp';
+import {Link} from 'react-router-dom';
 
 
 class Login extends Component {
@@ -8,6 +10,7 @@ class Login extends Component {
     super(props);
     this.state = { 
       username: '',
+      clkd_signup: false,
      };
   }
 
@@ -33,13 +36,21 @@ class Login extends Component {
   }
 
   render() {
-    const{username} = this.state
+    const{username, clkd_signup} = this.state;
+    if(clkd_signup) {
+      return (
+        <SignUp />
+      )
+    }
+
     return (
-      <div className="authForm">
-        <h2>LOGIN</h2>
+      <form id="authform">
         <input onChange={e => this.handleInput(e.target)} value={username} className="username-field" type="text" placeholder="username" />
-        <input type="button" onClick={() => this.signIn(username)} value="LOGIN" className="loginBtn"/>
-      </div>
+        <button type="button" onClick={() => this.signIn(username)} className="loginBtn">Login</button>
+
+        <Link to="/" 
+        onClick={() => this.setState({clkd_signup: true})} id="signup_link">or sign up</Link>
+      </form>
     );
   }
 }

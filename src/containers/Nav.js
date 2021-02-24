@@ -1,34 +1,39 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import '../styles/Nav.css';
 import graph from '../assets/images/graph.svg';
 import growth_arrow from '../assets/images/growth-arrow.svg';
 import pie_chart from '../assets/images/pie-chart.svg';
 import account from '../assets/images/account.svg';
+import {LOGOUT} from '../actions';
+import { connect } from "react-redux";
 
-function Nav(props) {
+function Nav({LOGOUT}) {
   return (
     <nav>
-      <Link className="nav-items" id="" to="/categories/new">
+      <NavLink exact activeClassName="active_nav_item" className="nav-items" id="" to="/categories/new">
         <img src={growth_arrow} alt="add expenses" />
         <span>Add an expense</span>
-      </Link>
+      </NavLink>
 
-      <Link className="nav-items" to="/categories">
+      <NavLink exact activeClassName="active_nav_item" className="nav-items" to="/categories/">
         <img src={graph} alt="track it" />
         <span>Track.it</span>
-      </Link>
+      </NavLink>
 
-      <Link className="nav-items">
+      <NavLink exact activeClassName="active_nav_item" to="/progress" className="nav-items">
         <img src={pie_chart} alt="pie chart" />
         <span>Your progress</span>
-      </Link>
+      </NavLink>
 
-      <Link className="nav-items">
+      <NavLink onClick={() => LOGOUT()} exact activeClassName="active_nav_item" to="/logout" className="nav-items">
         <img src={account} alt="account icon" />
         <span>Logout</span>
-      </Link>
+      </NavLink>
     </nav>
   );
 }
 
-export default Nav;
+export default connect(
+  null,
+  {LOGOUT}
+)(Nav);

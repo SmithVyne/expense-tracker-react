@@ -11,7 +11,10 @@ class ExpensesList extends Component {
     if (expenses) {
       return (
         <>
-          <Link className="addExpenseIcon" to={`/categories/${category_id}/expenses/new`} ><i class="fas fa-plus"></i></Link>
+          <Link className="addExpenseIcon" to={`/categories/${category_id}/expenses/new`} >
+            <i class="fas fa-plus"></i>
+          </Link>
+          
           <div id="expensesList">
             {
               expenses.map(({title, amount}) => (

@@ -1,6 +1,7 @@
 import {Component} from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
+import plus from '../assets/images/plus.svg';
 
 class AddNewCategory extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class AddNewCategory extends Component {
       name: '',
       limit: '',
       redirect: false,
+      render: false,
      };
   }
 
@@ -29,19 +31,28 @@ class AddNewCategory extends Component {
   
   render() {
     const {user_id} = this.props;
-    const {name, limit, redirect} = this.state;
+    const {name, limit, redirect, render} = this.state;
     if (redirect) {
-      this.setState({redirect: false})
       return (<Redirect to="/categories" />)
     };
 
+    if (render) {
+      return (
+        <form className="newCategoryForm">
+          <input onChange={(e) => this.handleCategory(e.target)} name="limit" value={limit} type="number" placeholder="" />
+          <input onChange={(e) => this.handleCategory(e.target)} name="name" value={name} type="text" placeholder=""  />
+          
+          <button onClick={()=>this.postCategory({user_id, name, limit})} type="button">Submit</button>
+          <span id="name-label">Limit</span>
+          <span id="limit-label">Name</span>
+        </form>
+      );
+    }
+
     return (
-      <form>
-        <input onChange={(e) => this.handleCategory(e.target)} name="name" value={name} type="text" placeholder="Give your category a name"  />
-        <input onChange={(e) => this.handleCategory(e.target)} name="limit" value={limit} type="number" placeholder="Your limit" />
-        <button onClick={()=>this.postCategory({user_id, name, limit})} type="button">Submit</button>
-      </form>
+      <img alt="" onClick={() => this.setState({render: true})} id="new_category_plus_icon" src={plus} />
     );
+
   }
 }
 

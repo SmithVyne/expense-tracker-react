@@ -5,9 +5,9 @@ export const LOGIN = user => (
   }
 );
 
-export const LOGOUT = {
+export const LOGOUT = () => ({
   type: 'LOGOUT',
-}
+})
 
 export const ADD_ALL_CATEGORIES = categories => (
   {
