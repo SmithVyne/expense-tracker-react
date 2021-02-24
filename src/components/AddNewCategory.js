@@ -2,6 +2,7 @@ import {Component} from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import plus from '../assets/images/plus.svg';
+import baseUrl from '../baseUrl';
 
 class AddNewCategory extends Component {
   constructor(props) {
@@ -18,8 +19,9 @@ class AddNewCategory extends Component {
     this.setState({[name]: name === 'limit' ? parseInt(value, 10) : value})
   }
 
-  postCategory({user_id, name, limit}) {  
-    fetch('/categories', {
+  postCategory({user_id, name, limit}) {
+    console.log(user_id);  
+    fetch(`${baseUrl}/categories`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

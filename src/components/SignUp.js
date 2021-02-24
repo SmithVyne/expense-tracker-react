@@ -4,6 +4,8 @@ import Login from './Login';
 import {useState} from 'react';
 import { connect } from 'react-redux';
 import Loader from './Loader';
+import baseUrl from '../baseUrl';
+
 
 function SignUp({LOGIN}) {
   const [username, setUsername] = useState('');
@@ -18,7 +20,7 @@ function SignUp({LOGIN}) {
   const signUp = async (username) => {
     setLoading(true);
 
-    const response = await fetch('/users', {
+    const response = await fetch(`${baseUrl}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

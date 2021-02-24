@@ -8,6 +8,7 @@ import reducer from './reducers';
 import { BrowserRouter } from 'react-router-dom';
 
 const store = createStore(reducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+console.log(process.env.NODE_ENV);
 
 ReactDOM.render(
   <Provider store={store}>

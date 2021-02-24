@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   render() {
-    const {currentUser} = this.props.currentUser;
+    const {currentUser} = this.props;
     const {loading} = this.state;
     console.log(currentUser);
     

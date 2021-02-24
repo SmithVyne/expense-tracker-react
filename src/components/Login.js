@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {LOGIN} from '../actions';
 import SignUp from './SignUp';
 import {Link} from 'react-router-dom';
+import baseUrl from '../baseUrl';
 
 
 class Login extends Component {
@@ -20,7 +21,7 @@ class Login extends Component {
   
   async signIn(username) {
     const {LOGIN} = this.props;
-    const response = await fetch('/login', {
+    const response = await fetch(`${baseUrl}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

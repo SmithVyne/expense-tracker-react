@@ -1,10 +1,10 @@
-const userReducer = (state = {currentUser: null}, action) => {
+const userReducer = (state = null, action) => {
   const {type, currentUser} = action;
   switch (type) {
     case 'LOGIN':
-      return {...state, currentUser};
+      return currentUser;
     case 'LOGOUT':
-      return {currentUser: null};
+      return null;
     default:
       return state;
   }

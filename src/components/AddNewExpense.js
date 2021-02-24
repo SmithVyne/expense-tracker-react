@@ -1,4 +1,5 @@
 import {Component} from 'react';
+import baseUrl from '../baseUrl';
 
 class AddNewExpense extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class AddNewExpense extends Component {
   }
 
   postExpense(category_id, title, amount) {
-    fetch('/expenses', {
+    fetch(`${baseUrl}/expenses`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
