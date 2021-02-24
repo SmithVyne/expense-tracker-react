@@ -25,7 +25,7 @@ function Nav({LOGOUT}) {
         <span>Your progress</span>
       </NavLink>
 
-      <NavLink onClick={() => LOGOUT()} exact activeClassName="active_nav_item" to="/logout" className="nav-items">
+      <NavLink onClick={() => LOGOUT()} exact activeClassName="active_nav_item" to="/" className="nav-items">
         <img src={account} alt="account icon" />
         <span>Logout</span>
       </NavLink>

@@ -20,7 +20,6 @@ class Login extends Component {
   
   async signIn(username) {
     const {LOGIN} = this.props;
-    this.setState({userSignedIn: 'loading'});
     const response = await fetch('/login', {
       method: 'POST',
       headers: {
@@ -31,7 +30,7 @@ class Login extends Component {
 
     if (response.ok) {
       response.json()
-      .then(userData => LOGIN(userData) && this.setState({userSignedIn:'yes'}));
+      .then(userData => LOGIN(userData));
     }
   }
 

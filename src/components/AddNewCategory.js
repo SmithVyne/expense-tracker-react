@@ -24,7 +24,7 @@ class AddNewCategory extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user_id:2, name, limit, total:0})
+      body: JSON.stringify({user_id, name, limit, total:0})
     })
     .then(response => response.ok && this.setState({redirect: true}));
   }
