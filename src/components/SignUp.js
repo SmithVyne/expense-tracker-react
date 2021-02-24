@@ -13,7 +13,6 @@ function SignUp({LOGIN}) {
   const [clkd_login, set_clkd_login] = useState(false);
 
   const handleInput = ({value}) => {
-    console.log(value);
     setUsername(value);
   }
   
