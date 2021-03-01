@@ -1,6 +1,5 @@
-# Catalogue of Statistics Project
-  I built this Covid19 Live Data application as my capstone project to complete the React/Redux curriculum at [Microverse](https://microverse.org).
-  The application fetches data from the [M-Media Covid-19 data API](https://github.com/M-Media-Group/Covid-19-API).
+# SpendLess - Expenses Tracker
+  This is the React Client for the expense tracker API. You can keep track of your daily expenses with the app and go back to measure how well you stick to your budget.
 
 ## Live version
 [Spend Less](https://spendless.netlify.app/)
